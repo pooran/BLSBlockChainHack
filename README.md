@@ -34,7 +34,7 @@ Implemented db using SQL Azure
 
 Wrote two web applications - 'Conveniente' for end users and 'OfertaDeFarmacia' for Phramacies - Incomplete
 
-Created C# NEO blockchain smart contract
+Learnt and implemented C# NEO blockchain smart contract
 
 Result
 ------
