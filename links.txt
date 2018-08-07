@@ -1,0 +1,3 @@
+http://datos.gob.cl/dataset?q=medicamento&sort=score+desc%2C+metadata_modified+desc
+http://datos.gob.cl/dataset/precios_de_medicamentos_farmacia_comunitaria_al_05_diciembre_2016
+http://datos.gob.cl/dataset/9085
