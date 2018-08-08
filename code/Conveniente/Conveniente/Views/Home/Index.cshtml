@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+
+<div class="jumbotron">
+    <h1>Iniciar sesión</h1>
+    <p><input id="Text1" value="12.345.678-9" type="text" /></p>
+    <p><input id="Password1" value="1234" type="password" /></p>
+    <input type="button" value="Redirect" onclick="window.location='@Url.Action("Index", "Pacientes")'" />
+</div>

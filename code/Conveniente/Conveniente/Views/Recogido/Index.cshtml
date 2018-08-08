@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Conveniente.Models.Oferta>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UsusarioId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstaActivo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EsAceptado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EsRecogido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Farmacia.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Prescripcion.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Seguro.Nombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UsusarioId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstaActivo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Total)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EsAceptado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EsRecogido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Farmacia.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Prescripcion.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Seguro.Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

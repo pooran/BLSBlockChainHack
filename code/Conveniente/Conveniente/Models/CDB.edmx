@@ -1,0 +1,961 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="bslhackModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Clinica">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="FechaDeCreacion1" Type="datetime" Nullable="false" />
+          <Property Name="FechaModificada1" Type="datetime" />
+          <Property Name="EstaActivo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Farmacia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Comuna" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Localidad" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Direccion" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="HoraApertura" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HoraCierre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Lat" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Long" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Region" Type="int" Nullable="false" />
+          <Property Name="FechaDeCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaModificada" Type="datetime" />
+          <Property Name="EstaActivo" Type="bit" Nullable="false" />
+          <Property Name="Regiona" Type="nvarchar" MaxLength="50" />
+          <Property Name="ComunaId" Type="nvarchar" MaxLength="50" />
+          <Property Name="LocalidadId" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Medicina">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PrescripcionId" Type="int" Nullable="false" />
+          <Property Name="NombreMedicamento" Type="nvarchar" MaxLength="500" />
+          <Property Name="Dosis" Type="int" />
+          <Property Name="Unidad" Type="nvarchar" MaxLength="50" />
+          <Property Name="Cada" Type="int" />
+          <Property Name="UnidadTiempo" Type="nvarchar" MaxLength="50" />
+          <Property Name="CantidadDias" Type="int" />
+          <Property Name="FechaDeCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaModificada" Type="datetime" />
+          <Property Name="EstaActivo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NombreMedicina">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OfertaId" Type="int" Nullable="false" />
+          <Property Name="MedicinaId" Type="int" Nullable="false" />
+          <Property Name="Marca" Type="nvarchar" MaxLength="50" />
+          <Property Name="EstaActivo" Type="nchar" MaxLength="10" />
+          <Property Name="Costo" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Oferta">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FarmaciaId" Type="int" Nullable="false" />
+          <Property Name="UsusarioId" Type="int" Nullable="false" />
+          <Property Name="PrescripcionId" Type="int" Nullable="false" />
+          <Property Name="EstaActivo" Type="nchar" MaxLength="10" />
+          <Property Name="Total" Type="bigint" Nullable="false" />
+          <Property Name="SeguroId" Type="int" />
+          <Property Name="EsAceptado" Type="bit" Nullable="false" />
+          <Property Name="EsRecogido" Type="bit" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Paciente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UsuarioId" Type="int" Nullable="false" />
+          <Property Name="ClinicId" Type="int" Nullable="false" />
+          <Property Name="PacienteId" Type="nvarchar" MaxLength="50" />
+          <Property Name="Clave" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaDeCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaModificada" Type="datetime" />
+          <Property Name="EstaActivo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Prescripcion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UsuarioId" Type="int" Nullable="false" />
+          <Property Name="PacienteId" Type="int" Nullable="false" />
+          <Property Name="FechaDeCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaModificada" Type="datetime" />
+          <Property Name="EstaActivo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Seguro">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Percentage" Type="int" Nullable="false" />
+          <Property Name="EstaActivo" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Trabajo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaDeCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaModificada" Type="datetime" />
+          <Property Name="EstaActivo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RUT" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Clave" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FechaDeCreacion" Type="datetime" Nullable="false" />
+          <Property Name="FechaModificada" Type="datetime" />
+          <Property Name="EstaActivo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsuarioTrabajo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UsuarioId" Type="int" Nullable="false" />
+          <Property Name="TrabajoId" Type="int" Nullable="false" />
+          <Property Name="EstaActivo" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="UsusarioFarmacia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UsuarioId" Type="int" Nullable="false" />
+          <Property Name="FarmaciaId" Type="int" Nullable="false" />
+          <Property Name="EstaActivo" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK_Medicina_Prescripcion">
+          <End Role="Prescripcion" Type="Self.Prescripcion" Multiplicity="1" />
+          <End Role="Medicina" Type="Self.Medicina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prescripcion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Medicina">
+              <PropertyRef Name="PrescripcionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NombreMedicina_Medicina">
+          <End Role="Medicina" Type="Self.Medicina" Multiplicity="1" />
+          <End Role="NombreMedicina" Type="Self.NombreMedicina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicina">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NombreMedicina">
+              <PropertyRef Name="MedicinaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NombreMedicina_Oferta">
+          <End Role="Oferta" Type="Self.Oferta" Multiplicity="1" />
+          <End Role="NombreMedicina" Type="Self.NombreMedicina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oferta">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NombreMedicina">
+              <PropertyRef Name="OfertaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Oferta_Farmacia">
+          <End Role="Farmacia" Type="Self.Farmacia" Multiplicity="1" />
+          <End Role="Oferta" Type="Self.Oferta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Farmacia">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Oferta">
+              <PropertyRef Name="FarmaciaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Oferta_Prescripcion">
+          <End Role="Prescripcion" Type="Self.Prescripcion" Multiplicity="1" />
+          <End Role="Oferta" Type="Self.Oferta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prescripcion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Oferta">
+              <PropertyRef Name="PrescripcionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Oferta_Seguro">
+          <End Role="Seguro" Type="Self.Seguro" Multiplicity="0..1" />
+          <End Role="Oferta" Type="Self.Oferta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seguro">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Oferta">
+              <PropertyRef Name="SeguroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Paciente_Clinica">
+          <End Role="Clinica" Type="Self.Clinica" Multiplicity="1" />
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clinica">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Paciente">
+              <PropertyRef Name="ClinicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Paciente_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Paciente">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prescripcion_Paciente">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
+          <End Role="Prescripcion" Type="Self.Prescripcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Prescripcion">
+              <PropertyRef Name="PacienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioTrabajo_Trabajo">
+          <End Role="Trabajo" Type="Self.Trabajo" Multiplicity="1" />
+          <End Role="UsuarioTrabajo" Type="Self.UsuarioTrabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trabajo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsuarioTrabajo">
+              <PropertyRef Name="TrabajoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioTrabajo_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="UsuarioTrabajo" Type="Self.UsuarioTrabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsuarioTrabajo">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsusarioFarmacia_Farmacia">
+          <End Role="Farmacia" Type="Self.Farmacia" Multiplicity="1" />
+          <End Role="UsusarioFarmacia" Type="Self.UsusarioFarmacia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Farmacia">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsusarioFarmacia">
+              <PropertyRef Name="FarmaciaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsusarioFarmacia_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="UsusarioFarmacia" Type="Self.UsusarioFarmacia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsusarioFarmacia">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="bslhackModelStoreContainer">
+          <EntitySet Name="Clinica" EntityType="Self.Clinica" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Farmacia" EntityType="Self.Farmacia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Medicina" EntityType="Self.Medicina" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NombreMedicina" EntityType="Self.NombreMedicina" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Oferta" EntityType="Self.Oferta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Paciente" EntityType="Self.Paciente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prescripcion" EntityType="Self.Prescripcion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Seguro" EntityType="Self.Seguro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Trabajo" EntityType="Self.Trabajo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsuarioTrabajo" EntityType="Self.UsuarioTrabajo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsusarioFarmacia" EntityType="Self.UsusarioFarmacia" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Medicina_Prescripcion" Association="Self.FK_Medicina_Prescripcion">
+            <End Role="Prescripcion" EntitySet="Prescripcion" />
+            <End Role="Medicina" EntitySet="Medicina" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NombreMedicina_Medicina" Association="Self.FK_NombreMedicina_Medicina">
+            <End Role="Medicina" EntitySet="Medicina" />
+            <End Role="NombreMedicina" EntitySet="NombreMedicina" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NombreMedicina_Oferta" Association="Self.FK_NombreMedicina_Oferta">
+            <End Role="Oferta" EntitySet="Oferta" />
+            <End Role="NombreMedicina" EntitySet="NombreMedicina" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Oferta_Farmacia" Association="Self.FK_Oferta_Farmacia">
+            <End Role="Farmacia" EntitySet="Farmacia" />
+            <End Role="Oferta" EntitySet="Oferta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Oferta_Prescripcion" Association="Self.FK_Oferta_Prescripcion">
+            <End Role="Prescripcion" EntitySet="Prescripcion" />
+            <End Role="Oferta" EntitySet="Oferta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Oferta_Seguro" Association="Self.FK_Oferta_Seguro">
+            <End Role="Seguro" EntitySet="Seguro" />
+            <End Role="Oferta" EntitySet="Oferta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Paciente_Clinica" Association="Self.FK_Paciente_Clinica">
+            <End Role="Clinica" EntitySet="Clinica" />
+            <End Role="Paciente" EntitySet="Paciente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Paciente_Usuario" Association="Self.FK_Paciente_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Paciente" EntitySet="Paciente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prescripcion_Paciente" Association="Self.FK_Prescripcion_Paciente">
+            <End Role="Paciente" EntitySet="Paciente" />
+            <End Role="Prescripcion" EntitySet="Prescripcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioTrabajo_Trabajo" Association="Self.FK_UsuarioTrabajo_Trabajo">
+            <End Role="Trabajo" EntitySet="Trabajo" />
+            <End Role="UsuarioTrabajo" EntitySet="UsuarioTrabajo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioTrabajo_Usuario" Association="Self.FK_UsuarioTrabajo_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="UsuarioTrabajo" EntitySet="UsuarioTrabajo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsusarioFarmacia_Farmacia" Association="Self.FK_UsusarioFarmacia_Farmacia">
+            <End Role="Farmacia" EntitySet="Farmacia" />
+            <End Role="UsusarioFarmacia" EntitySet="UsusarioFarmacia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsusarioFarmacia_Usuario" Association="Self.FK_UsusarioFarmacia_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="UsusarioFarmacia" EntitySet="UsusarioFarmacia" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="bslhackModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Clinica">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FechaDeCreacion1" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaModificada1" Type="DateTime" Precision="3" />
+          <Property Name="EstaActivo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Pacientes" Relationship="Self.FK_Paciente_Clinica" FromRole="Clinica" ToRole="Paciente" />
+        </EntityType>
+        <EntityType Name="Farmacia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Comuna" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Localidad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HoraApertura" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HoraCierre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Lat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Long" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Region" Type="Int32" Nullable="false" />
+          <Property Name="FechaDeCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaModificada" Type="DateTime" Precision="3" />
+          <Property Name="EstaActivo" Type="Boolean" Nullable="false" />
+          <Property Name="Regiona" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ComunaId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LocalidadId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Ofertas" Relationship="Self.FK_Oferta_Farmacia" FromRole="Farmacia" ToRole="Oferta" />
+          <NavigationProperty Name="UsusarioFarmacias" Relationship="Self.FK_UsusarioFarmacia_Farmacia" FromRole="Farmacia" ToRole="UsusarioFarmacia" />
+        </EntityType>
+        <EntityType Name="Medicina">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PrescripcionId" Type="Int32" Nullable="false" />
+          <Property Name="NombreMedicamento" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Dosis" Type="Int32" />
+          <Property Name="Unidad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Cada" Type="Int32" />
+          <Property Name="UnidadTiempo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CantidadDias" Type="Int32" />
+          <Property Name="FechaDeCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaModificada" Type="DateTime" Precision="3" />
+          <Property Name="EstaActivo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Prescripcion" Relationship="Self.FK_Medicina_Prescripcion" FromRole="Medicina" ToRole="Prescripcion" />
+          <NavigationProperty Name="NombreMedicinas" Relationship="Self.FK_NombreMedicina_Medicina" FromRole="Medicina" ToRole="NombreMedicina" />
+        </EntityType>
+        <EntityType Name="NombreMedicina">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OfertaId" Type="Int32" Nullable="false" />
+          <Property Name="MedicinaId" Type="Int32" Nullable="false" />
+          <Property Name="Marca" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EstaActivo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Costo" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Medicina" Relationship="Self.FK_NombreMedicina_Medicina" FromRole="NombreMedicina" ToRole="Medicina" />
+          <NavigationProperty Name="Oferta" Relationship="Self.FK_NombreMedicina_Oferta" FromRole="NombreMedicina" ToRole="Oferta" />
+        </EntityType>
+        <EntityType Name="Oferta">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FarmaciaId" Type="Int32" Nullable="false" />
+          <Property Name="UsusarioId" Type="Int32" Nullable="false" />
+          <Property Name="PrescripcionId" Type="Int32" Nullable="false" />
+          <Property Name="EstaActivo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Total" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Farmacia" Relationship="Self.FK_Oferta_Farmacia" FromRole="Oferta" ToRole="Farmacia" />
+          <NavigationProperty Name="NombreMedicinas" Relationship="Self.FK_NombreMedicina_Oferta" FromRole="Oferta" ToRole="NombreMedicina" />
+          <NavigationProperty Name="Prescripcion" Relationship="Self.FK_Oferta_Prescripcion" FromRole="Oferta" ToRole="Prescripcion" />
+          <Property Name="SeguroId" Type="Int32" />
+          <Property Name="EsAceptado" Type="Boolean" Nullable="false" />
+          <Property Name="EsRecogido" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Seguro" Relationship="bslhackModel.FK_Oferta_Seguro" FromRole="Oferta" ToRole="Seguro" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Paciente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsuarioId" Type="Int32" Nullable="false" />
+          <Property Name="ClinicId" Type="Int32" Nullable="false" />
+          <Property Name="Clave" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FechaDeCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaModificada" Type="DateTime" Precision="3" />
+          <Property Name="EstaActivo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Clinica" Relationship="Self.FK_Paciente_Clinica" FromRole="Paciente" ToRole="Clinica" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Paciente_Usuario" FromRole="Paciente" ToRole="Usuario" />
+          <NavigationProperty Name="Prescripcions" Relationship="Self.FK_Prescripcion_Paciente" FromRole="Paciente" ToRole="Prescripcion" />
+          <Property Name="PacienteId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Prescripcion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsuarioId" Type="Int32" Nullable="false" />
+          <Property Name="PacienteId" Type="Int32" Nullable="false" />
+          <Property Name="FechaDeCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaModificada" Type="DateTime" Precision="3" />
+          <Property Name="EstaActivo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Medicinas" Relationship="Self.FK_Medicina_Prescripcion" FromRole="Prescripcion" ToRole="Medicina" />
+          <NavigationProperty Name="Ofertas" Relationship="Self.FK_Oferta_Prescripcion" FromRole="Prescripcion" ToRole="Oferta" />
+          <NavigationProperty Name="Paciente" Relationship="Self.FK_Prescripcion_Paciente" FromRole="Prescripcion" ToRole="Paciente" />
+        </EntityType>
+        <EntityType Name="Trabajo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FechaDeCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaModificada" Type="DateTime" Precision="3" />
+          <Property Name="EstaActivo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="UsuarioTrabajoes" Relationship="Self.FK_UsuarioTrabajo_Trabajo" FromRole="Trabajo" ToRole="UsuarioTrabajo" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RUT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Clave" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FechaDeCreacion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaModificada" Type="DateTime" Precision="3" />
+          <Property Name="EstaActivo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Pacientes" Relationship="Self.FK_Paciente_Usuario" FromRole="Usuario" ToRole="Paciente" />
+          <NavigationProperty Name="UsuarioTrabajoes" Relationship="Self.FK_UsuarioTrabajo_Usuario" FromRole="Usuario" ToRole="UsuarioTrabajo" />
+          <NavigationProperty Name="UsusarioFarmacias" Relationship="Self.FK_UsusarioFarmacia_Usuario" FromRole="Usuario" ToRole="UsusarioFarmacia" />
+        </EntityType>
+        <EntityType Name="UsuarioTrabajo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsuarioId" Type="Int32" Nullable="false" />
+          <Property Name="TrabajoId" Type="Int32" Nullable="false" />
+          <Property Name="EstaActivo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Trabajo" Relationship="Self.FK_UsuarioTrabajo_Trabajo" FromRole="UsuarioTrabajo" ToRole="Trabajo" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_UsuarioTrabajo_Usuario" FromRole="UsuarioTrabajo" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="UsusarioFarmacia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsuarioId" Type="Int32" Nullable="false" />
+          <Property Name="FarmaciaId" Type="Int32" Nullable="false" />
+          <Property Name="EstaActivo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Farmacia" Relationship="Self.FK_UsusarioFarmacia_Farmacia" FromRole="UsusarioFarmacia" ToRole="Farmacia" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_UsusarioFarmacia_Usuario" FromRole="UsusarioFarmacia" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="FK_Paciente_Clinica">
+          <End Role="Clinica" Type="Self.Clinica" Multiplicity="1" />
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clinica">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Paciente">
+              <PropertyRef Name="ClinicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Oferta_Farmacia">
+          <End Role="Farmacia" Type="Self.Farmacia" Multiplicity="1" />
+          <End Role="Oferta" Type="Self.Oferta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Farmacia">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Oferta">
+              <PropertyRef Name="FarmaciaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsusarioFarmacia_Farmacia">
+          <End Role="Farmacia" Type="Self.Farmacia" Multiplicity="1" />
+          <End Role="UsusarioFarmacia" Type="Self.UsusarioFarmacia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Farmacia">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsusarioFarmacia">
+              <PropertyRef Name="FarmaciaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Medicina_Prescripcion">
+          <End Role="Prescripcion" Type="Self.Prescripcion" Multiplicity="1" />
+          <End Role="Medicina" Type="Self.Medicina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prescripcion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Medicina">
+              <PropertyRef Name="PrescripcionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NombreMedicina_Medicina">
+          <End Role="Medicina" Type="Self.Medicina" Multiplicity="1" />
+          <End Role="NombreMedicina" Type="Self.NombreMedicina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Medicina">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NombreMedicina">
+              <PropertyRef Name="MedicinaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NombreMedicina_Oferta">
+          <End Role="Oferta" Type="Self.Oferta" Multiplicity="1" />
+          <End Role="NombreMedicina" Type="Self.NombreMedicina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Oferta">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NombreMedicina">
+              <PropertyRef Name="OfertaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Oferta_Prescripcion">
+          <End Role="Prescripcion" Type="Self.Prescripcion" Multiplicity="1" />
+          <End Role="Oferta" Type="Self.Oferta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Prescripcion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Oferta">
+              <PropertyRef Name="PrescripcionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Paciente_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Paciente">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prescripcion_Paciente">
+          <End Role="Paciente" Type="Self.Paciente" Multiplicity="1" />
+          <End Role="Prescripcion" Type="Self.Prescripcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paciente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Prescripcion">
+              <PropertyRef Name="PacienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioTrabajo_Trabajo">
+          <End Role="Trabajo" Type="Self.Trabajo" Multiplicity="1" />
+          <End Role="UsuarioTrabajo" Type="Self.UsuarioTrabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trabajo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsuarioTrabajo">
+              <PropertyRef Name="TrabajoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioTrabajo_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="UsuarioTrabajo" Type="Self.UsuarioTrabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsuarioTrabajo">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsusarioFarmacia_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="UsusarioFarmacia" Type="Self.UsusarioFarmacia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsusarioFarmacia">
+              <PropertyRef Name="UsuarioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="bslhackEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clinicas" EntityType="Self.Clinica" />
+          <EntitySet Name="Farmacias" EntityType="Self.Farmacia" />
+          <EntitySet Name="Medicinas" EntityType="Self.Medicina" />
+          <EntitySet Name="NombreMedicinas" EntityType="Self.NombreMedicina" />
+          <EntitySet Name="Ofertas" EntityType="Self.Oferta" />
+          <EntitySet Name="Pacientes" EntityType="Self.Paciente" />
+          <EntitySet Name="Prescripcions" EntityType="Self.Prescripcion" />
+          <EntitySet Name="Trabajoes" EntityType="Self.Trabajo" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
+          <EntitySet Name="UsuarioTrabajoes" EntityType="Self.UsuarioTrabajo" />
+          <EntitySet Name="UsusarioFarmacias" EntityType="Self.UsusarioFarmacia" />
+          <AssociationSet Name="FK_Paciente_Clinica" Association="Self.FK_Paciente_Clinica">
+            <End Role="Clinica" EntitySet="Clinicas" />
+            <End Role="Paciente" EntitySet="Pacientes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Oferta_Farmacia" Association="Self.FK_Oferta_Farmacia">
+            <End Role="Farmacia" EntitySet="Farmacias" />
+            <End Role="Oferta" EntitySet="Ofertas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsusarioFarmacia_Farmacia" Association="Self.FK_UsusarioFarmacia_Farmacia">
+            <End Role="Farmacia" EntitySet="Farmacias" />
+            <End Role="UsusarioFarmacia" EntitySet="UsusarioFarmacias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Medicina_Prescripcion" Association="Self.FK_Medicina_Prescripcion">
+            <End Role="Prescripcion" EntitySet="Prescripcions" />
+            <End Role="Medicina" EntitySet="Medicinas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NombreMedicina_Medicina" Association="Self.FK_NombreMedicina_Medicina">
+            <End Role="Medicina" EntitySet="Medicinas" />
+            <End Role="NombreMedicina" EntitySet="NombreMedicinas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NombreMedicina_Oferta" Association="Self.FK_NombreMedicina_Oferta">
+            <End Role="Oferta" EntitySet="Ofertas" />
+            <End Role="NombreMedicina" EntitySet="NombreMedicinas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Oferta_Prescripcion" Association="Self.FK_Oferta_Prescripcion">
+            <End Role="Prescripcion" EntitySet="Prescripcions" />
+            <End Role="Oferta" EntitySet="Ofertas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Paciente_Usuario" Association="Self.FK_Paciente_Usuario">
+            <End Role="Usuario" EntitySet="Usuarios" />
+            <End Role="Paciente" EntitySet="Pacientes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prescripcion_Paciente" Association="Self.FK_Prescripcion_Paciente">
+            <End Role="Paciente" EntitySet="Pacientes" />
+            <End Role="Prescripcion" EntitySet="Prescripcions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioTrabajo_Trabajo" Association="Self.FK_UsuarioTrabajo_Trabajo">
+            <End Role="Trabajo" EntitySet="Trabajoes" />
+            <End Role="UsuarioTrabajo" EntitySet="UsuarioTrabajoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioTrabajo_Usuario" Association="Self.FK_UsuarioTrabajo_Usuario">
+            <End Role="Usuario" EntitySet="Usuarios" />
+            <End Role="UsuarioTrabajo" EntitySet="UsuarioTrabajoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsusarioFarmacia_Usuario" Association="Self.FK_UsusarioFarmacia_Usuario">
+            <End Role="Usuario" EntitySet="Usuarios" />
+            <End Role="UsusarioFarmacia" EntitySet="UsusarioFarmacias" />
+          </AssociationSet>
+          <EntitySet Name="Seguroes" EntityType="bslhackModel.Seguro" />
+          <AssociationSet Name="FK_Oferta_Seguro" Association="bslhackModel.FK_Oferta_Seguro">
+            <End Role="Seguro" EntitySet="Seguroes" />
+            <End Role="Oferta" EntitySet="Ofertas" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Seguro">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Percentage" Type="Int32" Nullable="false" />
+          <Property Name="EstaActivo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Ofertas" Relationship="bslhackModel.FK_Oferta_Seguro" FromRole="Seguro" ToRole="Oferta" />
+        </EntityType>
+        <Association Name="FK_Oferta_Seguro">
+          <End Type="bslhackModel.Seguro" Role="Seguro" Multiplicity="0..1" />
+          <End Type="bslhackModel.Oferta" Role="Oferta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seguro">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Oferta">
+              <PropertyRef Name="SeguroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="bslhackModelStoreContainer" CdmEntityContainer="bslhackEntities">
+          <EntitySetMapping Name="Clinicas">
+            <EntityTypeMapping TypeName="bslhackModel.Clinica">
+              <MappingFragment StoreEntitySet="Clinica">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="FechaDeCreacion1" ColumnName="FechaDeCreacion1" />
+                <ScalarProperty Name="FechaModificada1" ColumnName="FechaModificada1" />
+                <ScalarProperty Name="EstaActivo" ColumnName="EstaActivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Farmacias">
+            <EntityTypeMapping TypeName="bslhackModel.Farmacia">
+              <MappingFragment StoreEntitySet="Farmacia">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Comuna" ColumnName="Comuna" />
+                <ScalarProperty Name="Localidad" ColumnName="Localidad" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="HoraApertura" ColumnName="HoraApertura" />
+                <ScalarProperty Name="HoraCierre" ColumnName="HoraCierre" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="Long" ColumnName="Long" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
+                <ScalarProperty Name="FechaModificada" ColumnName="FechaModificada" />
+                <ScalarProperty Name="EstaActivo" ColumnName="EstaActivo" />
+                <ScalarProperty Name="Regiona" ColumnName="Regiona" />
+                <ScalarProperty Name="ComunaId" ColumnName="ComunaId" />
+                <ScalarProperty Name="LocalidadId" ColumnName="LocalidadId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Medicinas">
+            <EntityTypeMapping TypeName="bslhackModel.Medicina">
+              <MappingFragment StoreEntitySet="Medicina">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PrescripcionId" ColumnName="PrescripcionId" />
+                <ScalarProperty Name="NombreMedicamento" ColumnName="NombreMedicamento" />
+                <ScalarProperty Name="Dosis" ColumnName="Dosis" />
+                <ScalarProperty Name="Unidad" ColumnName="Unidad" />
+                <ScalarProperty Name="Cada" ColumnName="Cada" />
+                <ScalarProperty Name="UnidadTiempo" ColumnName="UnidadTiempo" />
+                <ScalarProperty Name="CantidadDias" ColumnName="CantidadDias" />
+                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
+                <ScalarProperty Name="FechaModificada" ColumnName="FechaModificada" />
+                <ScalarProperty Name="EstaActivo" ColumnName="EstaActivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NombreMedicinas">
+            <EntityTypeMapping TypeName="bslhackModel.NombreMedicina">
+              <MappingFragment StoreEntitySet="NombreMedicina">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="OfertaId" ColumnName="OfertaId" />
+                <ScalarProperty Name="MedicinaId" ColumnName="MedicinaId" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="EstaActivo" ColumnName="EstaActivo" />
+                <ScalarProperty Name="Costo" ColumnName="Costo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ofertas">
+            <EntityTypeMapping TypeName="bslhackModel.Oferta">
+              <MappingFragment StoreEntitySet="Oferta">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="EsRecogido" ColumnName="EsRecogido" />
+                <ScalarProperty Name="EsAceptado" ColumnName="EsAceptado" />
+                <ScalarProperty Name="SeguroId" ColumnName="SeguroId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FarmaciaId" ColumnName="FarmaciaId" />
+                <ScalarProperty Name="UsusarioId" ColumnName="UsusarioId" />
+                <ScalarProperty Name="PrescripcionId" ColumnName="PrescripcionId" />
+                <ScalarProperty Name="EstaActivo" ColumnName="EstaActivo" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pacientes">
+            <EntityTypeMapping TypeName="bslhackModel.Paciente">
+              <MappingFragment StoreEntitySet="Paciente">
+                <ScalarProperty Name="PacienteId" ColumnName="PacienteId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+                <ScalarProperty Name="ClinicId" ColumnName="ClinicId" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
+                <ScalarProperty Name="FechaModificada" ColumnName="FechaModificada" />
+                <ScalarProperty Name="EstaActivo" ColumnName="EstaActivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prescripcions">
+            <EntityTypeMapping TypeName="bslhackModel.Prescripcion">
+              <MappingFragment StoreEntitySet="Prescripcion">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+                <ScalarProperty Name="PacienteId" ColumnName="PacienteId" />
+                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
+                <ScalarProperty Name="FechaModificada" ColumnName="FechaModificada" />
+                <ScalarProperty Name="EstaActivo" ColumnName="EstaActivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trabajoes">
+            <EntityTypeMapping TypeName="bslhackModel.Trabajo">
+              <MappingFragment StoreEntitySet="Trabajo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
+                <ScalarProperty Name="FechaModificada" ColumnName="FechaModificada" />
+                <ScalarProperty Name="EstaActivo" ColumnName="EstaActivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="bslhackModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RUT" ColumnName="RUT" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="FechaDeCreacion" ColumnName="FechaDeCreacion" />
+                <ScalarProperty Name="FechaModificada" ColumnName="FechaModificada" />
+                <ScalarProperty Name="EstaActivo" ColumnName="EstaActivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsuarioTrabajoes">
+            <EntityTypeMapping TypeName="bslhackModel.UsuarioTrabajo">
+              <MappingFragment StoreEntitySet="UsuarioTrabajo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+                <ScalarProperty Name="TrabajoId" ColumnName="TrabajoId" />
+                <ScalarProperty Name="EstaActivo" ColumnName="EstaActivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsusarioFarmacias">
+            <EntityTypeMapping TypeName="bslhackModel.UsusarioFarmacia">
+              <MappingFragment StoreEntitySet="UsusarioFarmacia">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+                <ScalarProperty Name="FarmaciaId" ColumnName="FarmaciaId" />
+                <ScalarProperty Name="EstaActivo" ColumnName="EstaActivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Seguroes">
+            <EntityTypeMapping TypeName="bslhackModel.Seguro">
+              <MappingFragment StoreEntitySet="Seguro">
+                <ScalarProperty Name="EstaActivo" ColumnName="EstaActivo" />
+                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

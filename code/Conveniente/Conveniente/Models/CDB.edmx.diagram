@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="40eafd953efa4c7990969fdde2d849cb" Name="Diagram1">
+        <EntityTypeShape EntityType="bslhackModel.Clinica" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="bslhackModel.Farmacia" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bslhackModel.Medicina" Width="1.5" PointX="7.5" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="bslhackModel.NombreMedicina" Width="1.5" PointX="9.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bslhackModel.Oferta" Width="1.5" PointX="7.5" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bslhackModel.Paciente" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="bslhackModel.Prescripcion" Width="1.5" PointX="5.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bslhackModel.Trabajo" Width="1.5" PointX="3.75" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="bslhackModel.Usuario" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="bslhackModel.UsuarioTrabajo" Width="1.5" PointX="6" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="bslhackModel.UsusarioFarmacia" Width="1.5" PointX="6" PointY="4" IsExpanded="true" />
+        <AssociationConnector Association="bslhackModel.FK_Paciente_Clinica" ManuallyRouted="false" />
+        <AssociationConnector Association="bslhackModel.FK_Oferta_Farmacia" ManuallyRouted="false" />
+        <AssociationConnector Association="bslhackModel.FK_UsusarioFarmacia_Farmacia" ManuallyRouted="false" />
+        <AssociationConnector Association="bslhackModel.FK_Medicina_Prescripcion" ManuallyRouted="false" />
+        <AssociationConnector Association="bslhackModel.FK_NombreMedicina_Medicina" ManuallyRouted="false" />
+        <AssociationConnector Association="bslhackModel.FK_NombreMedicina_Oferta" ManuallyRouted="false" />
+        <AssociationConnector Association="bslhackModel.FK_Oferta_Prescripcion" ManuallyRouted="false" />
+        <AssociationConnector Association="bslhackModel.FK_Paciente_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="bslhackModel.FK_Prescripcion_Paciente" ManuallyRouted="false" />
+        <AssociationConnector Association="bslhackModel.FK_UsuarioTrabajo_Trabajo" ManuallyRouted="false" />
+        <AssociationConnector Association="bslhackModel.FK_UsuarioTrabajo_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="bslhackModel.FK_UsusarioFarmacia_Usuario" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="bslhackModel.Seguro" Width="1.5" PointX="6.375" PointY="0.875" />
+        <AssociationConnector Association="bslhackModel.FK_Oferta_Seguro" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

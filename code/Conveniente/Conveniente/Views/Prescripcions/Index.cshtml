@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Conveniente.Models.Prescripcion>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UsuarioId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaDeCreacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaModificada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstaActivo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Paciente.Clave)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UsuarioId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaDeCreacion)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.FechaModificada)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstaActivo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Paciente.Clave)
+        </td>*@
+        <td>
+            @Html.ActionLink("Enviar para ofertas", "SubmitBids", "Prescripcion") |
+            @Html.ActionLink("Medicinas", "Index", "Medicinas") |
+            @Html.ActionLink("Ofertas", "Index", "Ofertas") |
+            @Html.ActionLink("Recogido", "Index", "Recogido")
+        </td>
+    </tr>
+}
+
+</table>

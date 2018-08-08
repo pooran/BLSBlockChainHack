@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Conveniente.Models.Medicina>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreMedicamento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dosis)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Unidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnidadTiempo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CantidadDias)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaDeCreacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaModificada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstaActivo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Prescripcion.Id)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NombreMedicamento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dosis)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Unidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cada)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnidadTiempo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CantidadDias)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaDeCreacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaModificada)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstaActivo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Prescripcion.Id)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

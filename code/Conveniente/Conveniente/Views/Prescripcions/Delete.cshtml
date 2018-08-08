@@ -1,0 +1,64 @@
+﻿@model Conveniente.Models.Prescripcion
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Prescripcion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UsuarioId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UsuarioId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaDeCreacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaDeCreacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaModificada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaModificada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstaActivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstaActivo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Paciente.Clave)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Paciente.Clave)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

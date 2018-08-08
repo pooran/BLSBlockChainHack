@@ -1,0 +1,90 @@
+﻿@model OfertaDeFarmacia.Models.Oferta
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Oferta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UsusarioId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UsusarioId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstaActivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstaActivo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EsAceptado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EsAceptado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EsRecogido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EsRecogido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Farmacia.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Farmacia.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prescripcion.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prescripcion.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Seguro.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Seguro.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

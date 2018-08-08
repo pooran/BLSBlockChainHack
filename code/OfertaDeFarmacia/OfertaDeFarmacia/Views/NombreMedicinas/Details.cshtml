@@ -1,0 +1,58 @@
+﻿@model OfertaDeFarmacia.Models.NombreMedicina
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>NombreMedicina</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Marca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Marca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstaActivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstaActivo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Costo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Costo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Medicina.NombreMedicamento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Medicina.NombreMedicamento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Oferta.EstaActivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Oferta.EstaActivo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
