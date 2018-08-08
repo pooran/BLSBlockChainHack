@@ -34,7 +34,14 @@ Implemented db using SQL Azure
 
 Wrote two web applications - 'Conveniente' for end users and 'OfertaDeFarmacia' for Phramacies - Incomplete
 
-Learnt and implemented C# NEO blockchain smart contract
+Learnt and implemented C# NEO blockchain smart contract, special thanks to Igor Machado igormcoelho#5846 on discord & Fabio Cardoso fabiocardoso#9507 on discord. Get on Discord group for Neo Blockchain at https://discordapp.com/invite/umsfhqs
+
+Send Message
+User Info
+Mutual Servers
+Mutual Friends
+NOTE
+
 
 Result
 ------
